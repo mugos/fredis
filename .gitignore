@@ -2,6 +2,5 @@
 /es
 /node_modules/
 /npm-debug.log
-/src
 /tmp
 yarn-error.log
