@@ -1,0 +1,12 @@
+sudo: false
+language: node_js
+node_js:
+- '0.12'
+- 4
+- 6
+- 8
+- 9
+deploy:
+  provider: npm
+  email: "EMAIL_ADDRESS"
+  api_key: "NPM_AUTH_TOKEN"
