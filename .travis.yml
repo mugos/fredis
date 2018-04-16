@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-- latest
+  - "lts/*"
 deploy:
   provider: npm
   email: "EMAIL_ADDRESS"
