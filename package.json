@@ -6,14 +6,6 @@
   "scripts": {
     "test": "mocha --recursive --require babel-register --reporter nyan"
   },
-  "babel": {
-    "presets": [
-      "env"
-    ],
-    "plugins": [
-      "transform-runtime"
-    ]
-  },
   "dependencies": {
     "ramda": "^0.25.0",
     "redis": "^2.8.0"
@@ -21,9 +13,18 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-latest": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "chai": "^4.1.2",
     "mocha": "^5.1.0"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
   }
 }

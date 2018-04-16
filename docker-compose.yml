@@ -2,6 +2,7 @@ version: '3.5'
 services:
   test:
     image: node:alpine
+    command: yarn test
     working_dir: /usr/local/src
     volumes:
       - .:/usr/local/src
