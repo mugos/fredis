@@ -6,7 +6,7 @@ var banner = '//  Ramda v' + pkg.version + '\n'
   + '//  (c) 2018-' + new Date().getFullYear()
   + '//  fRedis may be freely distributed under the MIT license.\n'
 
-var input = 'src/index.js'
+var input = 'source/index.js'
 
 var config = {
   input: input,

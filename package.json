@@ -9,8 +9,8 @@
     "url": "git://github.com/mugos/fredis.git"
   },
   "scripts": {
-    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
-    "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir src",
+    "build:es": "cross-env BABEL_ENV=es babel source --out-dir es",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel source --out-dir src",
     "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/fredis.js",
     "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/fredis.min.js",
     "build": "npm run build:es && npm run build:cjs && npm run build:umd && npm run build:umd:min",
