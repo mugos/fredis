@@ -1,9 +1,19 @@
 {
   "name": "fredis",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
+ "description": "A functional redis client.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mugos/fredis.git"
+  },
   "scripts": {
+    "build:es": "cross-env BABEL_ENV=es babel src --out-dir es",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir src",
+    "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/fredis.js",
+    "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/fredis.min.js",
+    "build": "npm run build:es && npm run build:cjs && npm run build:umd && npm run build:umd:min",
     "test": "mocha --recursive --require babel-register --reporter nyan"
   },
   "dependencies": {
@@ -16,8 +26,12 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-latest": "^6.24.1",
     "babel-runtime": "^6.26.0",
+    "browserify": "^16.2.0",
     "chai": "^4.1.2",
-    "mocha": "^5.1.0"
+    "cross-env": "^5.1.4",
+    "mocha": "^5.1.0",
+    "rollup": "^0.58.0",
+    "rollup-plugin-uglify": "^3.0.0"
   },
   "babel": {
     "presets": [

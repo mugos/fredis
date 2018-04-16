@@ -1,2 +1,7 @@
-node_modules/
+/dist/gh-pages/
+/es
+/node_modules/
+/npm-debug.log
+/src
+/tmp
 yarn-error.log
