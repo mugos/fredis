@@ -1,7 +1,5 @@
 sudo: false
 language: node_js
-node_js:
-- 9
 deploy:
   provider: npm
   email: "EMAIL_ADDRESS"
