@@ -1,21 +1,17 @@
-import { curry, map, isNil, cond, equals, T, concat } from 'ramda'
+import { curry, forEach, isNil, cond, equals, T, concat } from 'ramda'
 
-const defRedis = name => (...args) => ctx => {
-  return new Promise((resolve, reject) => {
-    const cb = curry((resolve, reject, e, r) => isNil(e) ? resolve(r) : reject(e))
-    ctx[name](...args.concat(cb(resolve, reject)))
-  })
-}
+const cb = (resolve, reject) => (err, reply) => isNil(err) ? resolve(reply) : reject(err)
+
+const defRedis = name => (...args) => client => new Promise((resolve, reject) => {
+  client[name](...args.concat(cb(resolve, reject)))
+})
 
 const composeRedis = client => async (...args) => {
-  const r = ctx => fn => {
-    return fn(ctx)
-  }
+  const reply = ctx => fn => fn(ctx)
   const context = client.multi()
-  map(r(context), args)
+  forEach(reply(context), args)
 
   return new Promise((resolve, reject) => {
-    const cb = curry((resolve, reject, e, r) => isNil(e) ? resolve(r) : reject(e))
     context.exec(cb(resolve, reject))
   })
 }
@@ -55,8 +51,9 @@ const deleteNamespace = client => async (ns) => {
 
 // TODO: export only method no logic
 const flushall = client => env => cond([
-  [equals("dev"), env => defRedis('flushall')()],
-  [T, () => { throw new Error("Can't do dat here") }]
+  [ equals('development'), env => defRedis('flushall')() ],
+  [ equals('test'), env => defRedis('flushall')() ],
+  [ T, () => { throw new Error("Can't do dat here") } ]
 ])(env)(client)
 
 const rawFlushall = defRedis('flushall')
@@ -79,4 +76,3 @@ export {
   flushall,
   rawFlushall
 }
-
